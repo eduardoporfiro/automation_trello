@@ -45,22 +45,37 @@ class Login
     raise variavel_nula 'USER_LOGIN' if ENV['USER_LOGIN'].nil?
     raise variavel_vazia 'USER_LOGIN' if ENV['USER_LOGIN'].empty?
 
-    @session.find("//input[@id='user']").set ENV['USER_LOGIN']
-    @session.find("//input[@id='password']").set ENV['USER_PASS']
-    @session.find("//input[@id='login']").click
+    login_using_var ENV['USER_LOGIN'], ENV['USER_PASS']
   end
 
   def allow_access
-    byebug
-    @session.find("//input[@id='approveButton']").click
+    bt = @session.find("//input[@id='approveButton']")
+    while bt.disabled?
+      sleep 0.5
+    end
+    bt.click
     @token = @session.find("//pre").text
+  end
+
+  def login_pass(login, pass)
+    raise variavel_vazia 'LOGIN' if login.empty?
+    raise variavel_vazia 'PASS' if pass.empty?
+
+    login_using_var login, pass
   end
 
   private
   def variavel_nula(variavel)
     "Por favor, configurar a variável de ambiente #{variavel} com a URL ou configurar o arquivo default.env com o valor"
   end
+
   def variavel_vazia(variavel)
     "A variável #{variavel} não pode estar vazia!"
+  end
+
+  def login_using_var(login, pass)
+    @session.find("//input[@id='user']").set login
+    @session.find("//input[@id='password']").set pass
+    @session.find("//input[@id='login']").click
   end
 end
