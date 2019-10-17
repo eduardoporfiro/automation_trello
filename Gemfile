@@ -1,0 +1,6 @@
+source 'http://rubygems.org'
+gem 'byebug'
+gem 'cucumber', '>=3.1.2'
+gem 'dotenv'
+gem 'httparty'
+gem 'capybara'
