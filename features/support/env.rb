@@ -6,6 +6,7 @@ require 'selenium-webdriver'
 require 'byebug'
 require 'colorize'
 require 'yaml'
+require 'faker'
 Dotenv.load('default.env')
 
 Capybara.configure do |config|

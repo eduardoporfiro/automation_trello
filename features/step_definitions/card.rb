@@ -46,6 +46,24 @@ And(/^A created list$/) do
   @card.id_list = @helper.get_list
 end
 
-When(/^I create a card with parameter "([^"]*)" and value "([^"]*)"$/) do |arg1, arg2|
-  pending
+When(/^I create a card with parameter "([^"]*)" and value "([^"]*)"$/) do |parameter, value|
+  if value.include? '<FAKE>'
+    value = Faker::Name.name
+  end
+  response = @card.postCardParameter parameter, value
+  puts "Response body: #{response.body}"
+  puts "Response code: #{response.code}"
+end
+
+When(/^I update the card with parameter "([^"]*)" using the new value "([^"]*)"$/) do |parameter, value|
+  if value.include? '<FAKE>'
+    value = Faker::Name.name
+  end
+  response = @card.putsCardParameter parameter, value
+  puts "Response body: #{response.body}"
+  puts "Response code: #{response.code}"
+end
+
+When(/^I delete all data created$/) do
+  @card.delete_data
 end
