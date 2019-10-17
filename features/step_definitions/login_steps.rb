@@ -37,3 +37,16 @@ end
 And(/^I fill the Login "([^"]*)" and Password "([^"]*)"$/) do |login, pass|
   @login.login_pass login, pass
 end
+
+When(/^I request a access token if not stored$/) do
+  if @helper.has_token?
+    @login.token = @helper.get_token
+    step 'I stored the token'
+  else
+    step 'I request a access token'
+    step 'I authorize the access'
+    step 'I fill the Login and Password using env information'
+    step 'I will be allowed to access the API'
+    step 'I stored the token'
+  end
+end

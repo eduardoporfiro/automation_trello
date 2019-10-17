@@ -1,9 +1,10 @@
 class Login
-  attr_reader :token
+  attr_accessor :token
   def initialize
     @url = ''
     @api = ''
     @token = ''
+    @helper = Helper.new
     @session = @session.nil? ? Capybara.current_session : @session
   end
 
@@ -59,6 +60,7 @@ class Login
     if @token.empty?
       raise 'Nenhum token foi retornado!'
     end
+    @helper.add_variable @token, 'token'
     @session.quit
   end
 
