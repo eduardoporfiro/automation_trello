@@ -1,4 +1,5 @@
 class Login
+  attr_reader :token
   def initialize
     @url = ''
     @api = ''

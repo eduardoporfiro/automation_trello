@@ -7,3 +7,12 @@ Background: Get the request
   And I fill the Login and Password using env information
   Then I will be allowed to access the API
   And I stored the token
+
+  @teste
+  Scenario: Criando um card
+    Given The user token
+    And A board called "Teste"
+    And A list called "List_teste"
+    When I create a card:
+    |NAME|DESCRICAO|POS|
+    Then I should receive a "" code
