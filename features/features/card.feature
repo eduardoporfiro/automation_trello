@@ -15,4 +15,4 @@ Background: Get the request
     And A list called "List_teste"
     When I create a card:
     |NAME|DESCRICAO|POS|
-    Then I should receive a "" code
+    Then I should receive a "200" code

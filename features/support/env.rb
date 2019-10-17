@@ -4,6 +4,7 @@ require 'capybara/cucumber'
 require 'dotenv'
 require 'selenium-webdriver'
 require 'byebug'
+require 'colorize'
 Dotenv.load('default.env')
 
 Capybara.configure do |config|

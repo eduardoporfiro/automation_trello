@@ -1,4 +1,5 @@
 Feature: Testando acesos e autorização
+
   Scenario: Testando autenticação Básica
     Given The Trello API from env
     And The env developer key

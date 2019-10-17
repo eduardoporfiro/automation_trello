@@ -32,8 +32,8 @@ class Login
   end
 
   def request_token
-    url = @url + '1/authorize?expiration=1day&name=Sensedia&scope=read,write&response_type=token'
-    url = url + "&callback_method=postMessage&key=#{@api}"
+    url = @url + '1/authorize?expiration=1day&name=MyPersonalToken&scope=read,write&response_type=token'
+    url = url + "&key=#{@api}"
     @session.visit url
   end
 
@@ -56,6 +56,10 @@ class Login
     end
     bt.click
     @token = @session.find("//pre").text
+    if @token.empty?
+      raise 'Nenhum token foi retornado!'
+    end
+    @session.quit
   end
 
   def login_pass(login, pass)
