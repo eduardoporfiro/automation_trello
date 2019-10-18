@@ -106,9 +106,8 @@ class Card
     variaveis['key'] = @api_key
     variaveis['token'] = @token
     variaveis[parameter] = value
-    variaveis['id'] = @id_card
     variaveis['idList'] = @id_list
-    response = self.class.put('/cards/', :header => @header, :body => variaveis)
+    response = self.class.put("/cards/#{@id_card}", :header => @header, :body => variaveis)
     @responses_code.append response.code
     response
   end

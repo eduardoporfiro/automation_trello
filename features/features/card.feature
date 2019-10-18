@@ -1,9 +1,9 @@
 @card
 Feature: Testes relacionados aos Cards
-Background: Get the request
-  Given The Trello API from env
-  And The env developer key
-  When I request a access token if not stored
+  Background: Get the request
+    Given The Trello API from env
+    And The env developer key
+    When I request a access token if not stored
 
   Scenario: Criando um card
     Given The user token
@@ -61,8 +61,8 @@ Background: Get the request
       |locationName|<FAKE>|<FAKE>|
       |subscribed  |true  |false |
 
-    Scenario: Deletando as informações
-      Given The user token
-      When I delete all data created
-      Then I should receive a "200" code
+  Scenario: Deletando as informações
+    Given The user token
+    When I delete all data created
+    Then I should receive a "200" code
       

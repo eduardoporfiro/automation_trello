@@ -44,14 +44,18 @@ class Helper
     @variaveis['cards'].each do |id|
       responses.append(delete_data(id, '/cards/'))
     end
+    @variaveis['cards'].clear
 
     @variaveis['lists'].each do |id|
       responses.append(delete_data(id, '/lists/'))
     end
+    @variaveis['lists'].clear
 
     @variaveis['boards'].each do |id|
       responses.append(delete_data(id, '/boards/'))
     end
+    @variaveis['boards'].clear
+    save_yaml
     responses
   end
 
@@ -64,8 +68,7 @@ class Helper
     val = {}
     val['key'] = ENV['API_KEY']
     val['token'] = get_token
-    val['id'] = id
-    response = HTTParty.delete url,:header => {'content-type': 'application/json'}, :body => val
+    response = HTTParty.delete ENV['TRELLO_API_URL'] + url + id.to_s,:header => {'content-type': 'application/json'}, :body => val
     response.code
   end
 
