@@ -11,14 +11,17 @@ class Helper
   end
 
   def has_board?
+    reload
     !@variaveis['boards'].empty?
   end
 
   def has_token?
+    reload
     !@variaveis['token'].empty?
   end
 
   def get_board
+    reload
     @variaveis['boards'].first
   end
 
@@ -27,10 +30,12 @@ class Helper
   end
 
   def get_token
+    reload
     @variaveis['token'].first
   end
 
   def has_list?
+    reload
     !@variaveis['lists'].empty?
   end
 
@@ -58,9 +63,13 @@ class Helper
   def delete_data(id, url)
     val = {}
     val['key'] = ENV['API_KEY']
-    val['token'] = @card.token
+    val['token'] = get_token
     val['id'] = id
     response = HTTParty.delete url,:header => {'content-type': 'application/json'}, :body => val
     response.code
+  end
+
+  def reload
+    @path = 'features/variable/vairaveis.yml'
   end
 end

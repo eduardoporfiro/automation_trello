@@ -88,6 +88,7 @@ class Card
     variaveis['key'] = @api_key
     variaveis['token'] = @token
     variaveis[parameter] = value
+    variaveis['idList'] = @id_list
     response = self.class.post('/cards/', :header => @header, :body => variaveis)
     if response.code == 200
       valor = JSON.parse(response.body)
@@ -106,6 +107,7 @@ class Card
     variaveis['token'] = @token
     variaveis[parameter] = value
     variaveis['id'] = @id_card
+    variaveis['idList'] = @id_list
     response = self.class.put('/cards/', :header => @header, :body => variaveis)
     @responses_code.append response.code
     response

@@ -49,6 +49,8 @@ end
 When(/^I create a card with parameter "([^"]*)" and value "([^"]*)"$/) do |parameter, value|
   if value.include? '<FAKE>'
     value = Faker::Name.name
+  elsif value.include? '<FAKE_DATE>'
+    value = Faker::Date.in_date_period.strftime '%Y-%m-%dT%H:%M:%S'
   end
   response = @card.postCardParameter parameter, value
   puts "Response body: #{response.body}"
@@ -58,6 +60,8 @@ end
 When(/^I update the card with parameter "([^"]*)" using the new value "([^"]*)"$/) do |parameter, value|
   if value.include? '<FAKE>'
     value = Faker::Name.name
+  elsif value.include? '<FAKE_DATE>'
+    value = Faker::Date.in_date_period.strftime '%Y-%m-%dT%H:%M:%S'
   end
   response = @card.putsCardParameter parameter, value
   puts "Response body: #{response.body}"
