@@ -44,11 +44,8 @@ class Helper
     @variaveis['cards'].each do |id|
       responses.append(delete_data(id, '/cards/'))
     end
-    @variaveis['cards'].clear
 
-    @variaveis['lists'].each do |id|
-      responses.append(delete_data(id, '/lists/'))
-    end
+    @variaveis['cards'].clear
     @variaveis['lists'].clear
 
     @variaveis['boards'].each do |id|
