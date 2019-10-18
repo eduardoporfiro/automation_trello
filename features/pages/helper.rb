@@ -52,6 +52,7 @@ class Helper
       responses.append(delete_data(id, '/boards/'))
     end
     @variaveis['boards'].clear
+    @variaveis['token'].clear
     save_yaml
     responses
   end

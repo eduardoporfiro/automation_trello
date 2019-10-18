@@ -1,3 +1,4 @@
+@user
 Feature: Testando acesos e autorização
 
   Scenario: Testando autenticação Básica

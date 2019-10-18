@@ -9,10 +9,10 @@ class Login
   end
 
   def get_url_env
-    raise variavel_nula 'TRELLO_URL' if ENV['TRELLO_URL'].nil?
-    raise variavel_vazia 'TRELLO_URL' if ENV['TRELLO_URL'].empty?
+    raise variavel_nula 'TRELLO_API_URL' if ENV['TRELLO_API_URL'].nil?
+    raise variavel_vazia 'TRELLO_API_URL' if ENV['TRELLO_API_URL'].empty?
 
-    @url = ENV['TRELLO_URL']
+    @url = ENV['TRELLO_API_URL']
   end
 
   def set_url(url)
@@ -33,7 +33,7 @@ class Login
   end
 
   def request_token
-    url = @url + '1/authorize?expiration=1day&name=MyPersonalToken&scope=read,write&response_type=token'
+    url = @url + '/authorize?expiration=1day&name=MyPersonalToken&scope=read,write&response_type=token'
     url = url + "&key=#{@api}"
     @session.visit url
   end
